@@ -1,0 +1,3 @@
+- Add b-type w-engines basic stats
+- Add Initial Damage Calculator
+- Add Character + W-engine best item (only based in main stats and a attack ether character)

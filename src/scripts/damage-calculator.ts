@@ -1,7 +1,8 @@
-let outgoingDamage = 0;
+import { addWEngineToCharacter, calculateDamage } from "./util";
+import { enginesTypeB } from "./w-engines";
 
 /* Example Character Zhu Yuan */
-let character = {
+const character: Character = {
   name: "Zhu Yuan",
   attack: 132,
   defense: 48,
@@ -10,60 +11,52 @@ let character = {
   pen: 0,
   critRate: 0.05,
   critDamage: 0.5,
+  outgoingDamage: 0,
 };
 
 /* Dummy Enemy */
-let enemy = {
+const enemy: Enemy = {
   name: "Dummy",
   attack: 100,
-  defense: 150,
+  defense: 50,
 };
 
-/* Scaling Stat - For now just for attack characters */
-let scalingStat = character.attack;
+export interface Enemy {
+  name: string;
+  attack: number;
+  defense: number;
+}
 
-/* Skill Motion Value - For now will have 100% of base attack */
-let skillMotionValue = 1;
+export interface Character {
+  name: string;
+  attack: number;
+  defense: number;
+  level: number;
+  penRatio: number;
+  pen: number;
+  critRate: number;
+  critDamage: number;
+  outgoingDamage: number;
+}
 
-/* Base Damage */
-let baseDamage = scalingStat * skillMotionValue;
+console.log(
+  `Damage Without any W-Engine: ${calculateDamage(character, enemy)}`
+);
 
-/* Only for Zhu Yuan - When enemy enters on corruption */
-let corruptionDamage = 62.5 / 100; //62.5% of attack
+/* Log Damage */
 
-/* Damage Percentage Bonus */
-let damagePercentageBonus = 1 + corruptionDamage; //1 + Sum Damage Percentage Bonus
+const bestEngines = enginesTypeB.sort((a, b) => {
+  return (
+    calculateDamage(addWEngineToCharacter(b, character), enemy) -
+    calculateDamage(addWEngineToCharacter(a, character), enemy)
+  );
+});
 
-/* Damage Reduction Multiplier */
-let damageReductionMultiplier = 1 - 0 + 0; //1 - Sum Damage Reduction + Sum Damage Taken
-
-/* Level coefficient */
-let levelCoefficient = 50 + (character.level - 1) * 4;
-
-/* Effective Defense */
-let effectiveDefense = enemy.defense * (1 - character.penRatio) - character.pen;
-
-/* Defense Multiplier */
-let defenseMultiplier =
-  levelCoefficient / (levelCoefficient + effectiveDefense);
-
-/* Resistance Multiplier */
-let resistanceMultiplier = 1;
-
-/* Stun Multiplier */
-let stunMultiplier = 1 + 0; //1 + Stun Bonus
-
-/* Attack */
-let attack = character.attack;
-
-/* Damage */
-outgoingDamage =
-  baseDamage *
-  damagePercentageBonus *
-  damageReductionMultiplier *
-  defenseMultiplier *
-  resistanceMultiplier *
-  stunMultiplier *
-  (1 + character.critRate * character.critDamage);
-
-console.log(outgoingDamage);
+bestEngines.forEach((engine) => {
+  console.log(
+    `Damage with ${engine.name}: ${calculateDamage(
+      addWEngineToCharacter(engine, character),
+      enemy
+    )}`
+  );
+});
