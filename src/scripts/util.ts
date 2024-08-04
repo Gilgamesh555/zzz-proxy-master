@@ -57,7 +57,7 @@ export function calculateDamage(character: Character, enemy: Enemy) {
 
 export function addWEngineToCharacter(
   wEngine: WEngine,
-  character: Character
+  character: Character,
 ): Character {
   const newCharacter = { ...character };
 
@@ -69,4 +69,8 @@ export function addWEngineToCharacter(
   newCharacter.attack += newCharacter.attack * (wEngine.attackPercentage ?? 0);
 
   return newCharacter;
+}
+
+export function sum(a: number, b: number) {
+  return a + b;
 }
