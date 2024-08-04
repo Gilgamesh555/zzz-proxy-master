@@ -60,7 +60,7 @@ export function calculateDamage(character: Character, enemy: Enemy) {
 
 export function addWEngineToCharacter(
   wEngine: WEngine,
-  character: Character
+  character: Character,
 ): Character {
   const newCharacter = { ...character };
 
@@ -83,4 +83,8 @@ export const bestEngines = (character: Character, enemy: Enemy) => {
       calculateDamage(addWEngineToCharacter(a, character), enemy)
     );
   });
+};
+
+export const sum = (a: number, b: number) => {
+  return a + b;
 };
