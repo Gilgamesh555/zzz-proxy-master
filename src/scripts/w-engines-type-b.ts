@@ -74,7 +74,7 @@ export const enginesTypeB: WEngine[] = [
   {
     name: "lunar-pleniluna",
     baseAttack: 32,
-    attackPercentage: 0.08 + 0.12, // 0.12 from when equipped with attack character
+    attackPercentage: 0.08, // 0.12 from when equipped with attack character
     type: "attack",
     effect:
       "Basic Attack, Dash Attack, and Dodge Counter DMG increases by 12%.",
@@ -90,7 +90,7 @@ export const enginesTypeB: WEngine[] = [
   {
     name: "lunar-decrescent",
     baseAttack: 32,
-    attackPercentage: 0.08 + 0.15, // only when chain or ultimate attack around 6s
+    attackPercentage: 0.08, // 0.15 only when chain or ultimate attack around 6s
     type: "attack",
     effect:
       "Launching a Chain Attack or Ultimate increases the equipper's DMG by 15% for 6s.",

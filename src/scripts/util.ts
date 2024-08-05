@@ -1,5 +1,7 @@
-import { Character, Enemy } from "./damage-calculator";
-import { WEngine } from "../interfaces/gameInterfaces";
+import { Character, Enemy, WEngine } from "../interfaces/gameInterfaces";
+import { enginesTypeA } from "./w-engines-type-a";
+import { enginesTypeB } from "./w-engines-type-b";
+import { enginesTypeS } from "./w-engines-type-s";
 
 export function calculateDamage(character: Character, enemy: Enemy) {
   let outgoingDamage = 0;
@@ -52,7 +54,8 @@ export function calculateDamage(character: Character, enemy: Enemy) {
     stunMultiplier *
     (1 + character.critRate * character.critDamage);
 
-  return outgoingDamage;
+  // Fixed to 2 decimal places
+  return Math.round(outgoingDamage * 100) / 100;
 }
 
 export function addWEngineToCharacter(
@@ -72,7 +75,9 @@ export function addWEngineToCharacter(
 }
 
 export const bestEngines = (character: Character, enemy: Enemy) => {
-  return enginesTypeB.sort((a, b) => {
+  const allEngines = enginesTypeB.concat(enginesTypeA.concat(enginesTypeS));
+
+  return allEngines.sort((a, b) => {
     return (
       calculateDamage(addWEngineToCharacter(b, character), enemy) -
       calculateDamage(addWEngineToCharacter(a, character), enemy)

@@ -1,4 +1,4 @@
-import { Character, Enemy } from "./damage-calculator";
+import { Character, Enemy } from "../interfaces/gameInterfaces";
 import { addWEngineToCharacter, bestEngines, calculateDamage } from "./util";
 
 export function showCharacterWEngineResults(

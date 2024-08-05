@@ -1,3 +1,4 @@
+import { Character, Enemy } from "../interfaces/gameInterfaces";
 import { showCharacterWEngineResults } from "./results";
 
 /* Example Character Zhu Yuan */
@@ -43,24 +44,6 @@ const enemy: Enemy = {
   attack: 100,
   defense: 50,
 };
-
-export interface Enemy {
-  name: string;
-  attack: number;
-  defense: number;
-}
-
-export interface Character {
-  name: string;
-  attack: number;
-  defense: number;
-  level: number;
-  penRatio: number;
-  pen: number;
-  critRate: number;
-  critDamage: number;
-  outgoingDamage: number;
-}
 
 /* Log Damage */
 
