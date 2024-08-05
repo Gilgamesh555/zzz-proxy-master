@@ -1,5 +1,5 @@
 import { Character, Enemy } from "./damage-calculator";
-import { WEngine } from "./w-engines";
+import { WEngine, enginesTypeB } from "./w-engines";
 
 export function calculateDamage(character: Character, enemy: Enemy) {
   let outgoingDamage = 0;
@@ -70,3 +70,12 @@ export function addWEngineToCharacter(
 
   return newCharacter;
 }
+
+export const bestEngines = (character: Character, enemy: Enemy) => {
+  return enginesTypeB.sort((a, b) => {
+    return (
+      calculateDamage(addWEngineToCharacter(b, character), enemy) -
+      calculateDamage(addWEngineToCharacter(a, character), enemy)
+    );
+  });
+};
