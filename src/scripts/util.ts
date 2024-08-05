@@ -1,5 +1,5 @@
 import { Character, Enemy } from "./damage-calculator";
-import { WEngine, enginesTypeB } from "./w-engines";
+import { WEngine } from "../interfaces/gameInterfaces";
 
 export function calculateDamage(character: Character, enemy: Enemy) {
   let outgoingDamage = 0;
